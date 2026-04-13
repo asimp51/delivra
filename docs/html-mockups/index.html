@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Delivra - All Screen Mockups</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8fafc;color:#1e293b;padding:40px 20px;max-width:900px;margin:0 auto}
+h1{font-size:32px;font-weight:800;margin-bottom:4px}h1 span{color:#059669}.subtitle{color:#64748b;margin-bottom:40px}
+.section{margin-bottom:40px}.section-title{font-size:20px;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #059669;display:inline-block}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+a.card{display:block;padding:16px;background:#fff;border-radius:12px;border:1px solid #e2e8f0;text-decoration:none;color:#1e293b;transition:all .2s}a.card:hover{border-color:#059669;box-shadow:0 4px 12px rgba(5,150,105,.15);transform:translateY(-2px)}
+.card-icon{font-size:28px;margin-bottom:8px}.card-name{font-weight:600;font-size:14px}.card-desc{font-size:12px;color:#94a3b8;margin-top:2px}
+.badge{display:inline-block;background:#ecfdf5;color:#059669;font-size:11px;padding:2px 8px;border-radius:99px;font-weight:600;margin-top:6px}
+</style>
+</head>
+<body>
+<h1><span>Delivra</span> Screen Mockups</h1>
+<p class="subtitle">Click any screen to view the working HTML mockup. All screens are mobile-responsive (430px max width).</p>
+
+<div class="section">
+<div class="section-title">&#128241; Customer App (8 screens)</div>
+<div class="grid">
+<a class="card" href="customer/home.html"><div class="card-icon">&#127968;</div><div class="card-name">Home Screen</div><div class="card-desc">Categories, vendors, promos</div><div class="badge">Main</div></a>
+<a class="card" href="customer/category.html"><div class="card-icon">&#127828;</div><div class="card-name">Category</div><div class="card-desc">Subcategories + vendor list</div></a>
+<a class="card" href="customer/vendor-detail.html"><div class="card-icon">&#127979;</div><div class="card-name">Vendor Detail</div><div class="card-desc">Menu items + add to cart</div></a>
+<a class="card" href="customer/cart.html"><div class="card-icon">&#128722;</div><div class="card-name">Cart</div><div class="card-desc">Items, promo code, total</div></a>
+<a class="card" href="customer/checkout.html"><div class="card-icon">&#128179;</div><div class="card-name">Checkout</div><div class="card-desc">Address, payment, confirm</div></a>
+<a class="card" href="animations/order-tracking.html"><div class="card-icon">&#128205;</div><div class="card-name">Order Tracking</div><div class="card-desc">SVG animations for all states</div><div class="badge">Animated</div></a>
+<a class="card" href="customer/orders.html"><div class="card-icon">&#128196;</div><div class="card-name">My Orders</div><div class="card-desc">Active + past orders</div></a>
+<a class="card" href="customer/profile.html"><div class="card-icon">&#128100;</div><div class="card-name">Profile</div><div class="card-desc">Settings, addresses, payments</div></a>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">&#128690; Rider App (3 screens)</div>
+<div class="grid">
+<a class="card" href="rider/home.html"><div class="card-icon">&#128690;</div><div class="card-name">Available Orders</div><div class="card-desc">Online toggle, delivery offers</div><div class="badge">Main</div></a>
+<a class="card" href="rider/active-delivery.html"><div class="card-icon">&#128506;</div><div class="card-name">Active Delivery</div><div class="card-desc">Map, steps, call/navigate</div></a>
+<a class="card" href="rider/earnings.html"><div class="card-icon">&#128176;</div><div class="card-name">Earnings</div><div class="card-desc">Daily/weekly/monthly stats</div></a>
+</div>
+</div>
+
+<div class="section">
+<div class="section-title">&#127979; Vendor Portal (1 screen)</div>
+<div class="grid">
+<a class="card" href="vendor/orders.html"><div class="card-icon">&#128722;</div><div class="card-name">Orders Kanban</div><div class="card-desc">3-column board: Incoming, Preparing, Ready</div><div class="badge">Main</div></a>
+</div>
+<p style="color:#94a3b8;font-size:12px;margin-top:8px">Full vendor portal with Menu, Analytics, Reviews, Settings — run <code>cd apps/vendor-portal && npm run dev</code> on port 3002</p>
+</div>
+
+<div class="section">
+<div class="section-title">&#128736; Admin Dashboard (1 screen)</div>
+<div class="grid">
+<a class="card" href="admin/dashboard.html"><div class="card-icon">&#128200;</div><div class="card-name">Dashboard Overview</div><div class="card-desc">KPIs, recent orders, category breakdown</div><div class="badge">Main</div></a>
+</div>
+<p style="color:#94a3b8;font-size:12px;margin-top:8px">Full admin dashboard with 11 pages — run <code>cd apps/admin-dashboard && npm run dev</code> on port 3001</p>
+</div>
+
+<div class="section">
+<div class="section-title">&#128640; All Apps Summary</div>
+<div class="grid">
+<div class="card" style="background:#ecfdf5;border-color:#059669">
+<div class="card-name">Customer App</div>
+<div class="card-desc">8 HTML screens + SVG animations</div>
+</div>
+<div class="card" style="background:#ecfdf5;border-color:#059669">
+<div class="card-name">Rider App</div>
+<div class="card-desc">3 HTML screens</div>
+</div>
+<div class="card" style="background:#ecfdf5;border-color:#059669">
+<div class="card-name">Vendor Portal</div>
+<div class="card-desc">Next.js app (run with npm run dev)</div>
+</div>
+<div class="card" style="background:#ecfdf5;border-color:#059669">
+<div class="card-name">Admin Dashboard</div>
+<div class="card-desc">Next.js app (run with npm run dev)</div>
+</div>
+</div>
+</div>
+
+<p style="color:#94a3b8;font-size:13px;margin-top:40px">Note: Vendor Portal and Admin Dashboard are full Next.js apps — run them with <code>npm run dev</code>. The HTML mockups above are for the mobile apps (Customer + Rider).</p>
+</body>
+</html>

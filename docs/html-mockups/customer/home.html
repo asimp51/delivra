@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Delivra - Home</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; max-width: 430px; margin: 0 auto; min-height: 100vh; position: relative; }
+  .status-bar { background: #059669; color: white; padding: 8px 16px; display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; }
+  .header { background: #059669; color: white; padding: 16px 20px 24px; }
+  .location-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+  .location-row svg { width: 20px; height: 20px; }
+  .location-label { font-size: 12px; opacity: 0.8; }
+  .location-value { font-size: 16px; font-weight: 700; }
+  .search-bar { background: rgba(255,255,255,0.2); border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.8); font-size: 14px; }
+  .content { padding: 20px; padding-bottom: 80px; }
+  .promo-banner { background: linear-gradient(135deg, #059669, #10b981); border-radius: 16px; padding: 20px; color: white; margin-bottom: 24px; position: relative; overflow: hidden; }
+  .promo-banner h3 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+  .promo-banner p { font-size: 13px; opacity: 0.9; }
+  .promo-dots { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); opacity: 0.2; }
+  .section-title { font-size: 18px; font-weight: 700; color: #1e293b; margin-bottom: 16px; }
+  .categories-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
+  .cat-item { text-align: center; cursor: pointer; }
+  .cat-icon { width: 64px; height: 64px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 28px; transition: transform 0.2s; }
+  .cat-icon:hover { transform: scale(1.1); }
+  .cat-name { font-size: 11px; font-weight: 600; color: #475569; }
+  .cat-food .cat-icon { background: #fef3c7; }
+  .cat-grocery .cat-icon { background: #d1fae5; }
+  .cat-pharmacy .cat-icon { background: #dbeafe; }
+  .cat-flowers .cat-icon { background: #fce7f3; }
+  .cat-pets .cat-icon { background: #fed7aa; }
+  .cat-courier .cat-icon { background: #e0e7ff; }
+  .cat-store .cat-icon { background: #fecaca; }
+  .cat-shopping .cat-icon { background: #ccfbf1; }
+  .cat-services .cat-icon { background: #f3e8ff; }
+  .cat-water .cat-icon { background: #bae6fd; }
+  .vendor-scroll { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 24px; }
+  .vendor-scroll::-webkit-scrollbar { display: none; }
+  .vendor-card { min-width: 200px; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .vendor-img { height: 120px; background: linear-gradient(135deg, #e2e8f0, #cbd5e1); display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 32px; font-weight: 700; }
+  .vendor-info { padding: 12px; }
+  .vendor-name { font-size: 14px; font-weight: 700; color: #1e293b; }
+  .vendor-meta { font-size: 12px; color: #94a3b8; display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+  .vendor-rating { color: #f59e0b; font-weight: 600; }
+  .vendor-tag { background: #ecfdf5; color: #059669; font-size: 11px; padding: 2px 8px; border-radius: 99px; font-weight: 600; display: inline-block; margin-top: 6px; }
+  .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; background: white; border-top: 1px solid #e2e8f0; display: flex; padding: 8px 0; z-index: 10; }
+  .nav-item { flex: 1; text-align: center; padding: 6px; cursor: pointer; }
+  .nav-item svg { width: 24px; height: 24px; margin: 0 auto; color: #94a3b8; }
+  .nav-item.active svg { color: #059669; }
+  .nav-item span { display: block; font-size: 10px; color: #94a3b8; margin-top: 2px; font-weight: 600; }
+  .nav-item.active span { color: #059669; }
+  .more-cats { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #059669; font-weight: 600; cursor: pointer; margin-bottom: 16px; justify-content: flex-end; }
+</style>
+</head>
+<body>
+  <div class="status-bar"><span>9:41</span><span>Delivra</span></div>
+
+  <div class="header">
+    <div class="location-row">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div>
+        <div class="location-label">Delivering to</div>
+        <div class="location-value">Downtown, Dubai &#9662;</div>
+      </div>
+    </div>
+    <div class="search-bar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      Search for anything...
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="promo-banner">
+      <h3>50% OFF</h3>
+      <p>Your first order! Use code WELCOME50</p>
+      <svg class="promo-dots" width="100" height="80" viewBox="0 0 100 80"><circle cx="20" cy="20" r="15" fill="white"/><circle cx="60" cy="10" r="25" fill="white"/><circle cx="85" cy="55" r="18" fill="white"/></svg>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div class="section-title" style="margin-bottom:0">Categories</div>
+      <div class="more-cats">View All &#8250;</div>
+    </div>
+
+    <div class="categories-grid">
+      <div class="cat-item cat-food"><div class="cat-icon">&#127828;</div><div class="cat-name">Food</div></div>
+      <div class="cat-item cat-grocery"><div class="cat-icon">&#128722;</div><div class="cat-name">Grocery</div></div>
+      <div class="cat-item cat-pharmacy"><div class="cat-icon">&#128138;</div><div class="cat-name">Pharmacy</div></div>
+      <div class="cat-item cat-flowers"><div class="cat-icon">&#127800;</div><div class="cat-name">Flowers</div></div>
+      <div class="cat-item cat-pets"><div class="cat-icon">&#128062;</div><div class="cat-name">Pets</div></div>
+      <div class="cat-item cat-courier"><div class="cat-icon">&#128230;</div><div class="cat-name">Courier</div></div>
+      <div class="cat-item cat-store"><div class="cat-icon">&#127978;</div><div class="cat-name">Store</div></div>
+      <div class="cat-item cat-shopping"><div class="cat-icon">&#128717;</div><div class="cat-name">Shopping</div></div>
+      <div class="cat-item cat-services"><div class="cat-icon">&#128736;</div><div class="cat-name">Services</div></div>
+      <div class="cat-item cat-water"><div class="cat-icon">&#128167;</div><div class="cat-name">Water</div></div>
+    </div>
+
+    <div class="section-title">Popular Near You</div>
+    <div class="vendor-scroll">
+      <div class="vendor-card"><div class="vendor-img">AB</div><div class="vendor-info"><div class="vendor-name">Al Baik</div><div class="vendor-meta"><span class="vendor-rating">&#9733; 4.8</span><span>25 min</span></div><div class="vendor-tag">Free delivery</div></div></div>
+      <div class="vendor-card"><div class="vendor-img">CE</div><div class="vendor-info"><div class="vendor-name">Carrefour</div><div class="vendor-meta"><span class="vendor-rating">&#9733; 4.5</span><span>30 min</span></div><div class="vendor-tag">$2 delivery</div></div></div>
+      <div class="vendor-card"><div class="vendor-img">PH</div><div class="vendor-info"><div class="vendor-name">Pizza Hut</div><div class="vendor-meta"><span class="vendor-rating">&#9733; 4.1</span><span>35 min</span></div><div class="vendor-tag">20% OFF</div></div></div>
+      <div class="vendor-card"><div class="vendor-img">NP</div><div class="vendor-info"><div class="vendor-name">Nahdi Pharmacy</div><div class="vendor-meta"><span class="vendor-rating">&#9733; 4.6</span><span>20 min</span></div><div class="vendor-tag">Free delivery</div></div></div>
+    </div>
+
+    <div class="section-title">Recommended For You</div>
+    <div class="vendor-scroll">
+      <div class="vendor-card"><div class="vendor-img">FP</div><div class="vendor-info"><div class="vendor-name">Flowers Plus</div><div class="vendor-meta"><span class="vendor-rating">&#9733; 4.7</span><span>40 min</span></div><div class="vendor-tag">New</div></div></div>
+      <div class="vendor-card"><div class="vendor-img">PW</div><div class="vendor-info"><div class="vendor-name">Pet World</div><div class="vendor-meta"><span class="vendor-rating">&#9733; 4.3</span><span>35 min</span></div><div class="vendor-tag">$1 delivery</div></div></div>
+      <div class="vendor-card"><div class="vendor-img">QM</div><div class="vendor-info"><div class="vendor-name">Quick Mart</div><div class="vendor-meta"><span class="vendor-rating">&#9733; 4.4</span><span>15 min</span></div><div class="vendor-tag">Express</div></div></div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <div class="nav-item active"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg><span>Home</span></div>
+    <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span>Search</span></div>
+    <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg><span>Orders</span></div>
+    <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span>Cart</span></div>
+    <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profile</span></div>
+  </div>
+</body>
+</html>

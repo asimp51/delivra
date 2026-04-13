@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Delivra Admin - Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8fafc;display:flex;min-height:100vh}
+.sidebar{width:260px;background:#fff;border-right:1px solid #e2e8f0;padding:20px 12px;flex-shrink:0;position:fixed;height:100vh;overflow-y:auto}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:24px;padding:4px 8px}.logo-icon{width:40px;height:40px;background:#059669;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px}.logo h2{font-size:18px;font-weight:800}.logo-sub{font-size:11px;color:#94a3b8}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;font-size:14px;font-weight:500;color:#64748b;cursor:pointer;margin-bottom:2px}.nav-item:hover{background:#f8fafc}.nav-item.active{background:#ecfdf5;color:#059669;font-weight:600}
+.main{margin-left:260px;flex:1;padding:24px}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}.search{width:380px;padding:10px 16px 10px 40px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;font-size:14px;position:relative}.topbar-right{display:flex;align-items:center;gap:16px}.notif-btn{position:relative;width:36px;height:36px;background:#f8fafc;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px}.notif-dot{position:absolute;top:4px;right:4px;width:8px;height:8px;background:#ef4444;border-radius:50%}.admin-avatar{width:36px;height:36px;background:#059669;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px}
+h1{font-size:22px;font-weight:700;margin-bottom:4px}.page-sub{color:#94a3b8;font-size:14px;margin-bottom:24px}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:24px}.kpi{background:#fff;border-radius:16px;border:1px solid #e2e8f0;padding:16px}.kpi-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.kpi-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px}.kpi-change{font-size:11px;font-weight:600;background:#ecfdf5;color:#059669;padding:2px 8px;border-radius:99px}.kpi-value{font-size:22px;font-weight:800;color:#1e293b}.kpi-label{font-size:13px;color:#94a3b8;margin-top:2px}
+.grid-2{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+.card{background:#fff;border-radius:16px;border:1px solid #e2e8f0}.card-header{padding:16px 20px;border-bottom:1px solid #f1f5f9;font-weight:600;font-size:15px}
+.order-row{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid #f8fafc;font-size:13px;transition:background .15s}.order-row:hover{background:#f8fafc}.order-id{font-weight:700;color:#059669}.order-customer{color:#475569}.order-vendor{color:#64748b}.order-total{font-weight:700}.order-time{color:#94a3b8;font-size:12px}
+.status-badge{padding:4px 10px;border-radius:99px;font-size:11px;font-weight:600}.s-delivered{background:#d1fae5;color:#059669}.s-transit{background:#ccfbf1;color:#0d9488}.s-preparing{background:#fef3c7;color:#b45309}.s-confirmed{background:#dbeafe;color:#2563eb}.s-pending{background:#fef9c3;color:#a16207}.s-assigned{background:#ede9fe;color:#7c3aed}
+.cat-item{padding:12px 20px}.cat-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}.cat-name{font-weight:500;color:#475569}.cat-stat{color:#94a3b8}.cat-bar{height:8px;background:#f1f5f9;border-radius:4px;overflow:hidden}.cat-fill{height:100%;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="sidebar">
+<div class="logo"><div class="logo-icon">&#128230;</div><div><h2>Delivra</h2><div class="logo-sub">Admin Dashboard</div></div></div>
+<div class="nav-item active">&#128200; Overview</div>
+<div class="nav-item">&#128193; Categories</div>
+<div class="nav-item">&#127979; Vendors</div>
+<div class="nav-item">&#128690; Riders</div>
+<div class="nav-item">&#128101; Customers</div>
+<div class="nav-item">&#128722; Orders</div>
+<div class="nav-item">&#128179; Payments</div>
+<div class="nav-item">&#128200; Analytics</div>
+<div class="nav-item">&#127991; Promotions</div>
+<div class="nav-item">&#128205; Zones</div>
+<div class="nav-item">&#9881; Settings</div>
+</div>
+<div class="main">
+<div class="topbar"><input class="search" placeholder="&#128269; Search orders, vendors, riders..."><div class="topbar-right"><div class="notif-btn">&#128276;<span class="notif-dot"></span></div><div class="admin-avatar">A</div></div></div>
+<h1>Dashboard Overview</h1>
+<div class="page-sub">Welcome back! Here is what is happening with Delivra today.</div>
+<div class="kpis">
+<div class="kpi"><div class="kpi-top"><div class="kpi-icon" style="background:#3b82f6">&#128722;</div><span class="kpi-change">+12.5%</span></div><div class="kpi-value">12,847</div><div class="kpi-label">Total Orders</div></div>
+<div class="kpi"><div class="kpi-top"><div class="kpi-icon" style="background:#22c55e">$</div><span class="kpi-change">+18.2%</span></div><div class="kpi-value">$284,930</div><div class="kpi-label">Revenue</div></div>
+<div class="kpi"><div class="kpi-top"><div class="kpi-icon" style="background:#8b5cf6">&#127979;</div><span class="kpi-change">+5.3%</span></div><div class="kpi-value">342</div><div class="kpi-label">Active Vendors</div></div>
+<div class="kpi"><div class="kpi-top"><div class="kpi-icon" style="background:#f59e0b">&#128690;</div><span class="kpi-change">+8.1%</span></div><div class="kpi-value">89</div><div class="kpi-label">Active Riders</div></div>
+<div class="kpi"><div class="kpi-top"><div class="kpi-icon" style="background:#ec4899">&#128101;</div><span class="kpi-change">+22.4%</span></div><div class="kpi-value">28,491</div><div class="kpi-label">Customers</div></div>
+<div class="kpi"><div class="kpi-top"><div class="kpi-icon" style="background:#14b8a6">&#128200;</div><span class="kpi-change">+3.7%</span></div><div class="kpi-value">$22.18</div><div class="kpi-label">Avg Order</div></div>
+</div>
+<div class="grid-2">
+<div class="card">
+<div class="card-header">Recent Orders</div>
+<div class="order-row"><span class="order-id">DLV-A8F2C</span><span class="order-customer">Ahmed Khan</span><span class="order-vendor">Al Baik</span><span class="order-total">$45.50</span><span class="status-badge s-delivered">delivered</span><span class="order-time">12 min ago</span></div>
+<div class="order-row"><span class="order-id">DLV-B3D1E</span><span class="order-customer">Sarah Ali</span><span class="order-vendor">Carrefour</span><span class="order-total">$128.00</span><span class="status-badge s-transit">in transit</span><span class="order-time">18 min ago</span></div>
+<div class="order-row"><span class="order-id">DLV-C7A9F</span><span class="order-customer">Omar Hassan</span><span class="order-vendor">Nahdi</span><span class="order-total">$32.00</span><span class="status-badge s-preparing">preparing</span><span class="order-time">25 min ago</span></div>
+<div class="order-row"><span class="order-id">DLV-D2E8B</span><span class="order-customer">Fatima Noor</span><span class="order-vendor">Flowers+</span><span class="order-total">$85.00</span><span class="status-badge s-confirmed">confirmed</span><span class="order-time">30 min ago</span></div>
+<div class="order-row"><span class="order-id">DLV-E1F4A</span><span class="order-customer">Khalid Saeed</span><span class="order-vendor">Pizza Hut</span><span class="order-total">$67.80</span><span class="status-badge s-pending">pending</span><span class="order-time">35 min ago</span></div>
+<div class="order-row"><span class="order-id">DLV-F9C3D</span><span class="order-customer">Layla Ahmed</span><span class="order-vendor">Pet World</span><span class="order-total">$54.25</span><span class="status-badge s-assigned">rider assigned</span><span class="order-time">42 min ago</span></div>
+</div>
+<div class="card">
+<div class="card-header">Orders by Category</div>
+<div class="cat-item"><div class="cat-row"><span class="cat-name">Food & Dining</span><span class="cat-stat">5,842 (45%)</span></div><div class="cat-bar"><div class="cat-fill" style="width:45%;background:#f59e0b"></div></div></div>
+<div class="cat-item"><div class="cat-row"><span class="cat-name">Grocery</span><span class="cat-stat">3,214 (25%)</span></div><div class="cat-bar"><div class="cat-fill" style="width:25%;background:#22c55e"></div></div></div>
+<div class="cat-item"><div class="cat-row"><span class="cat-name">Pharmacy</span><span class="cat-stat">1,542 (12%)</span></div><div class="cat-bar"><div class="cat-fill" style="width:12%;background:#3b82f6"></div></div></div>
+<div class="cat-item"><div class="cat-row"><span class="cat-name">Shopping</span><span class="cat-stat">1,028 (8%)</span></div><div class="cat-bar"><div class="cat-fill" style="width:8%;background:#8b5cf6"></div></div></div>
+<div class="cat-item"><div class="cat-row"><span class="cat-name">Flowers & Gifts</span><span class="cat-stat">642 (5%)</span></div><div class="cat-bar"><div class="cat-fill" style="width:5%;background:#ec4899"></div></div></div>
+<div class="cat-item"><div class="cat-row"><span class="cat-name">Others</span><span class="cat-stat">579 (5%)</span></div><div class="cat-bar"><div class="cat-fill" style="width:5%;background:#94a3b8"></div></div></div>
+</div>
+</div>
+</div>
+</body>
+</html>

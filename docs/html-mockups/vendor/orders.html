@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Delivra Vendor - Orders</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8fafc;display:flex;min-height:100vh}
+.sidebar{width:240px;background:#fff;border-right:1px solid #e2e8f0;padding:20px 12px;flex-shrink:0;position:fixed;height:100vh;overflow-y:auto}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding:0 8px}.logo-icon{width:36px;height:36px;background:#059669;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}.logo h2{font-size:16px}.logo-sub{font-size:11px;color:#94a3b8}
+.store-card{background:#f8fafc;border-radius:10px;padding:12px;margin-bottom:20px}.store-name{font-weight:700;font-size:14px}.store-toggle{display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:12px;color:#64748b}.toggle{width:40px;height:22px;background:#059669;border-radius:11px;position:relative;cursor:pointer}.toggle::after{content:'';width:18px;height:18px;background:#fff;border-radius:50%;position:absolute;right:2px;top:2px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;font-size:14px;font-weight:500;color:#64748b;cursor:pointer;margin-bottom:2px}.nav-item:hover{background:#f8fafc}.nav-item.active{background:#ecfdf5;color:#059669;font-weight:600}
+.main{margin-left:240px;flex:1;padding:24px}
+.page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}.page-header h1{font-size:22px;font-weight:700}.new-badge{background:#fecaca;color:#dc2626;padding:6px 14px;border-radius:99px;font-weight:600;font-size:13px;display:flex;align-items:center;gap:6px}
+@keyframes pulse-red{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.4)}50%{box-shadow:0 0 0 6px rgba(220,38,38,0)}}.pulse-red{animation:pulse-red 2s infinite}
+.columns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.col-header{display:flex;align-items:center;gap:8px;margin-bottom:16px}.col-dot{width:12px;height:12px;border-radius:50%}.col-dot.red{background:#ef4444}.col-dot.orange{background:#f59e0b}.col-dot.green{background:#059669}.col-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#64748b}.col-count{margin-left:auto;background:#f1f5f9;padding:2px 8px;border-radius:99px;font-size:12px;font-weight:700}
+.order-card{background:#fff;border-radius:16px;border:1px solid #e2e8f0;padding:16px;margin-bottom:12px;cursor:pointer;transition:box-shadow .2s}.order-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.order-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.order-id{font-weight:700;color:#059669;font-size:13px}.order-time{font-size:12px;color:#94a3b8;display:flex;align-items:center;gap:4px}
+.customer{display:flex;align-items:center;gap:8px;margin-bottom:10px}.avatar{width:32px;height:32px;background:#f1f5f9;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#64748b}.cust-name{font-size:13px;font-weight:600}.cust-pay{font-size:11px;color:#94a3b8}
+.items-list{padding:10px 0;border-top:1px solid #f1f5f9;border-bottom:1px solid #f1f5f9;margin-bottom:10px}.item-row{font-size:13px;color:#475569;padding:2px 0}.item-qty{font-weight:700;color:#1e293b}.item-opt{font-size:11px;color:#94a3b8;margin-left:4px}
+.order-bottom{display:flex;align-items:center;justify-content:space-between}.order-total{font-size:18px;font-weight:800}
+.btn-row{display:flex;gap:8px;margin-top:10px}.btn{padding:8px 16px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;text-align:center;border:none}.btn-reject{background:#fff;border:1px solid #ef4444;color:#ef4444}.btn-accept{background:#059669;color:#fff;flex:1}.btn-ready{background:#f59e0b;color:#fff;flex:1}.btn-waiting{background:#ecfdf5;color:#059669;flex:1;display:flex;align-items:center;justify-content:center;gap:4px}
+</style>
+</head>
+<body>
+<div class="sidebar">
+<div class="logo"><div class="logo-icon">D</div><div><h2>Delivra</h2><div class="logo-sub">Vendor Portal</div></div></div>
+<div class="store-card"><div class="store-name">Al Baik Restaurant</div><div class="store-toggle"><span>Store Status</span><div class="toggle"></div></div></div>
+<div class="nav-item active">&#128722; Orders</div>
+<div class="nav-item">&#127860; Menu</div>
+<div class="nav-item">&#128200; Analytics</div>
+<div class="nav-item">&#11088; Reviews</div>
+<div class="nav-item">&#9881; Settings</div>
+</div>
+<div class="main">
+<div class="page-header"><div><h1>Orders</h1><p style="color:#94a3b8;font-size:14px;margin-top:4px">Manage incoming and active orders in real-time.</p></div><div class="new-badge"><span class="pulse-red" style="width:8px;height:8px;background:#ef4444;border-radius:50%;display:inline-block"></span> 2 New</div></div>
+<div class="columns">
+<!-- Incoming -->
+<div>
+<div class="col-header"><div class="col-dot red pulse-red"></div><div class="col-title">Incoming</div><span class="col-count" style="background:#fecaca;color:#dc2626">2</span></div>
+<div class="order-card">
+<div class="order-top"><span class="order-id">DLV-K2M8</span><span class="order-time">&#9201; 2 min ago</span></div>
+<div class="customer"><div class="avatar">AK</div><div><div class="cust-name">Ahmed Khan</div><div class="cust-pay">Card</div></div></div>
+<div class="items-list"><div class="item-row"><span class="item-qty">2x</span> Chicken Meal <span class="item-opt">(Large, Spicy)</span></div><div class="item-row"><span class="item-qty">1x</span> Garlic Bread</div></div>
+<div class="order-bottom"><span class="order-total">$45.50</span></div>
+<div class="btn-row"><button class="btn btn-reject">Reject</button><button class="btn btn-accept">Accept</button></div>
+</div>
+<div class="order-card">
+<div class="order-top"><span class="order-id">DLV-L9N3</span><span class="order-time">&#9201; 4 min ago</span></div>
+<div class="customer"><div class="avatar">SA</div><div><div class="cust-name">Sarah Ali</div><div class="cust-pay">Cash</div></div></div>
+<div class="items-list"><div class="item-row"><span class="item-qty">1x</span> Family Bucket <span class="item-opt">(Original)</span></div><div class="item-row"><span class="item-qty">2x</span> Coleslaw</div><div class="item-row"><span class="item-qty">2x</span> Pepsi 1L</div></div>
+<div class="order-bottom"><span class="order-total">$78.00</span></div>
+<div class="btn-row"><button class="btn btn-reject">Reject</button><button class="btn btn-accept">Accept</button></div>
+</div>
+</div>
+<!-- Preparing -->
+<div>
+<div class="col-header"><div class="col-dot orange"></div><div class="col-title">Preparing</div><span class="col-count" style="background:#fef3c7;color:#b45309">2</span></div>
+<div class="order-card">
+<div class="order-top"><span class="order-id">DLV-M4P7</span><span class="order-time">&#9201; 14 min</span></div>
+<div class="customer"><div class="avatar">OH</div><div><div class="cust-name">Omar Hassan</div><div class="cust-pay">Card</div></div></div>
+<div class="items-list"><div class="item-row"><span class="item-qty">3x</span> Broasted Combo</div><div class="item-row"><span class="item-qty">3x</span> French Fries</div></div>
+<div class="order-bottom"><span class="order-total">$62.00</span></div>
+<div class="btn-row"><button class="btn btn-ready">&#10003; Mark Ready</button></div>
+</div>
+<div class="order-card">
+<div class="order-top"><span class="order-id">DLV-N1Q5</span><span class="order-time">&#9201; 19 min</span></div>
+<div class="customer"><div class="avatar">FN</div><div><div class="cust-name">Fatima Noor</div><div class="cust-pay">Wallet</div></div></div>
+<div class="items-list"><div class="item-row"><span class="item-qty">1x</span> Nuggets Box</div><div class="item-row"><span class="item-qty">2x</span> Cheese Burger</div></div>
+<div class="order-bottom"><span class="order-total">$38.50</span></div>
+<div class="btn-row"><button class="btn btn-ready">&#10003; Mark Ready</button></div>
+</div>
+</div>
+<!-- Ready -->
+<div>
+<div class="col-header"><div class="col-dot green"></div><div class="col-title">Ready for Pickup</div><span class="col-count" style="background:#ecfdf5;color:#059669">1</span></div>
+<div class="order-card">
+<div class="order-top"><span class="order-id">DLV-O8R2</span><span class="order-time">&#9201; 29 min</span></div>
+<div class="customer"><div class="avatar">KS</div><div><div class="cust-name">Khalid Saeed</div><div class="cust-pay">Card</div></div></div>
+<div class="items-list"><div class="item-row"><span class="item-qty">1x</span> Shrimp Meal <span class="item-opt">(Extra Sauce)</span></div></div>
+<div class="order-bottom"><span class="order-total">$29.00</span></div>
+<div class="btn-row"><button class="btn btn-waiting">&#128230; Awaiting Rider</button></div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

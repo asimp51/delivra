@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Delivra - Checkout</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8fafc;max-width:430px;margin:0 auto;min-height:100vh;padding-bottom:120px}
+.header{background:#fff;padding:12px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #e2e8f0}.back{width:36px;height:36px;background:#f1f5f9;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer}h1{font-size:18px;font-weight:700}
+.content{padding:16px}
+.address-card{display:flex;align-items:center;gap:12px;padding:16px;background:#fff;border-radius:16px;border:1px solid #e2e8f0;margin-bottom:20px}.addr-icon{width:44px;height:44px;background:#ecfdf5;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#059669}.addr-info{flex:1}.addr-label{font-size:12px;color:#94a3b8}.addr-val{font-size:14px;font-weight:600}
+.section-title{font-size:16px;font-weight:700;margin-bottom:12px}
+.pay-option{display:flex;align-items:center;gap:12px;padding:16px;background:#fff;border-radius:12px;border:2px solid #e2e8f0;margin-bottom:8px;cursor:pointer}.pay-option.selected{border-color:#059669}.pay-icon{font-size:20px;width:24px;text-align:center}.pay-info{flex:1}.pay-name{font-weight:600;font-size:14px}.pay-sub{font-size:12px;color:#94a3b8}.pay-check{width:22px;height:22px;border-radius:50%;border:2px solid #e2e8f0;display:flex;align-items:center;justify-content:center}.pay-option.selected .pay-check{background:#059669;border-color:#059669;color:#fff;font-size:12px}
+textarea{width:100%;padding:12px;border:1px solid #e2e8f0;border-radius:12px;font-size:14px;font-family:inherit;resize:none;margin-top:12px}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#fff;padding:16px;box-shadow:0 -2px 10px rgba(0,0,0,.08)}.total-row{display:flex;justify-content:space-between;margin-bottom:12px}.total-label{font-size:16px;font-weight:700}.total-val{font-size:20px;font-weight:800;color:#059669}
+.place-btn{width:100%;padding:14px;background:#059669;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="header"><div class="back">&#8592;</div><h1>Checkout</h1></div>
+<div class="content">
+<div class="address-card"><div class="addr-icon">&#128205;</div><div class="addr-info"><div class="addr-label">Delivery Address</div><div class="addr-val">Downtown, Building 5, Apt 12</div></div><div style="color:#94a3b8">&#10095;</div></div>
+<div class="section-title">Payment Method</div>
+<div class="pay-option selected"><div class="pay-icon">&#128179;</div><div class="pay-info"><div class="pay-name">Credit/Debit Card</div><div class="pay-sub">**** 4242</div></div><div class="pay-check">&#10003;</div></div>
+<div class="pay-option"><div class="pay-icon">&#128176;</div><div class="pay-info"><div class="pay-name">Cash on Delivery</div><div class="pay-sub">Pay when delivered</div></div><div class="pay-check"></div></div>
+<div class="pay-option"><div class="pay-icon">&#128091;</div><div class="pay-info"><div class="pay-name">Wallet</div><div class="pay-sub">Balance: $42.50</div></div><div class="pay-check"></div></div>
+<div class="section-title" style="margin-top:20px">Special Instructions</div>
+<textarea rows="3" placeholder="Any special instructions for the restaurant..."></textarea>
+</div>
+<div class="bottom"><div class="total-row"><span class="total-label">Total</span><span class="total-val">$50.78</span></div><button class="place-btn">Place Order</button></div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Delivra Rider - Earnings</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8fafc;max-width:430px;margin:0 auto;min-height:100vh;padding-bottom:70px}
+.header{background:#fff;padding:14px 16px;border-bottom:1px solid #e2e8f0}h1{font-size:20px;font-weight:700}
+.earn-card{margin:16px;padding:24px;background:linear-gradient(135deg,#059669,#10b981);border-radius:20px;color:#fff;text-align:center}
+.earn-label{font-size:14px;opacity:.8}.earn-total{font-size:36px;font-weight:800;margin:4px 0 16px}
+.earn-row{display:flex;justify-content:space-around}.earn-col{text-align:center}.earn-col-label{font-size:12px;opacity:.7}.earn-col-val{font-size:18px;font-weight:700;margin-top:2px}
+.chart-card{margin:16px;padding:16px;background:#fff;border-radius:16px;border:1px solid #e2e8f0}
+.chart-title{font-weight:700;margin-bottom:16px;font-size:14px}
+.bars{display:flex;align-items:flex-end;gap:8px;height:120px}.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}.bar-val{font-size:10px;color:#94a3b8}.bar{width:100%;border-radius:6px 6px 0 0;background:rgba(5,150,105,.7)}.bar-day{font-size:11px;color:#94a3b8}
+.withdraw{margin:16px;padding:14px;background:#059669;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;width:calc(100% - 32px);display:flex;align-items:center;justify-content:center;gap:8px}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#fff;border-top:1px solid #e2e8f0;display:flex;padding:8px 0}.nav-item{flex:1;text-align:center;padding:6px;font-size:10px;color:#94a3b8;font-weight:600}.nav-item.active{color:#059669}.nav-item .ico{font-size:20px;display:block;margin-bottom:2px}
+</style>
+</head>
+<body>
+<div class="header"><h1>Earnings</h1></div>
+<div class="earn-card">
+<div class="earn-label">Total Earnings</div>
+<div class="earn-total">$8,450.00</div>
+<div class="earn-row">
+<div class="earn-col"><div class="earn-col-label">Today</div><div class="earn-col-val">$42.50</div></div>
+<div class="earn-col"><div class="earn-col-label">This Week</div><div class="earn-col-val">$285.00</div></div>
+<div class="earn-col"><div class="earn-col-label">This Month</div><div class="earn-col-val">$1,120.00</div></div>
+</div>
+</div>
+<div class="chart-card">
+<div class="chart-title">Weekly Earnings</div>
+<div class="bars">
+<div class="bar-wrap"><div class="bar-val">$32</div><div class="bar" style="height:38%"></div><div class="bar-day">Mon</div></div>
+<div class="bar-wrap"><div class="bar-val">$48</div><div class="bar" style="height:57%"></div><div class="bar-day">Tue</div></div>
+<div class="bar-wrap"><div class="bar-val">$38</div><div class="bar" style="height:45%"></div><div class="bar-day">Wed</div></div>
+<div class="bar-wrap"><div class="bar-val">$42</div><div class="bar" style="height:50%"></div><div class="bar-day">Thu</div></div>
+<div class="bar-wrap"><div class="bar-val">$55</div><div class="bar" style="height:65%"></div><div class="bar-day">Fri</div></div>
+<div class="bar-wrap"><div class="bar-val">$60</div><div class="bar" style="height:72%"></div><div class="bar-day">Sat</div></div>
+<div class="bar-wrap"><div class="bar-val">$28</div><div class="bar" style="height:33%"></div><div class="bar-day">Sun</div></div>
+</div>
+</div>
+<button class="withdraw">&#127974; Withdraw to Bank</button>
+<div class="nav">
+<div class="nav-item"><span class="ico">&#128690;</span>Orders</div>
+<div class="nav-item active"><span class="ico">&#128176;</span>Earnings</div>
+<div class="nav-item"><span class="ico">&#128337;</span>History</div>
+<div class="nav-item"><span class="ico">&#128100;</span>Profile</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Delivra Rider - Active Delivery</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8fafc;max-width:430px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+.header{background:#fff;padding:12px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #e2e8f0;z-index:2}.back{width:36px;height:36px;background:#f1f5f9;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer}h1{font-size:16px;font-weight:700}
+.map{flex:1;background:linear-gradient(135deg,#e2e8f0,#f1f5f9);display:flex;align-items:center;justify-content:center;min-height:300px;position:relative}
+.map-label{font-size:16px;color:#64748b;text-align:center}.map-step{color:#059669;font-weight:700;font-size:14px;margin-top:4px}
+.bottom-panel{background:#fff;border-radius:24px 24px 0 0;box-shadow:0 -4px 20px rgba(0,0,0,.08);padding:20px;position:relative}
+.progress{display:flex;gap:4px;margin-bottom:16px}.progress-bar{flex:1;height:4px;border-radius:2px;background:#e2e8f0}.progress-bar.done{background:#059669}.progress-bar.active{background:linear-gradient(to right,#059669,#e2e8f0)}
+.order-row{display:flex;align-items:center;gap:12px;margin-bottom:16px}.order-icon{width:48px;height:48px;background:#ecfdf5;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#059669}.order-info{flex:1}.order-name{font-weight:700;font-size:14px}.order-detail{font-size:13px;color:#64748b}.order-earn{background:#ecfdf5;color:#059669;padding:6px 12px;border-radius:99px;font-weight:800;font-size:14px}
+.route{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}.route-dots{display:flex;flex-direction:column;align-items:center}.rdot{width:10px;height:10px;border-radius:50%}.rdot.pickup{border:2px solid #059669}.rdot.drop{background:#ef4444}.rline{width:2px;height:24px;background:#e2e8f0}.route-addrs{display:flex;flex-direction:column;gap:14px;font-size:13px;font-weight:600}
+.action-row{display:flex;gap:12px;margin-bottom:12px}.act-btn{flex:1;padding:12px;border:1px solid #e2e8f0;border-radius:12px;text-align:center;font-weight:600;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;color:#64748b}
+.main-btn{width:100%;padding:14px;background:#059669;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="header"><div class="back">&#8592;</div><h1>Delivery DLV-K2M8</h1></div>
+<div class="map"><div><div class="map-label">&#128506; Navigation Map</div><div class="map-step">Navigate to Vendor</div></div></div>
+<div class="bottom-panel">
+<div class="progress"><div class="progress-bar done"></div><div class="progress-bar active"></div><div class="progress-bar"></div><div class="progress-bar"></div><div class="progress-bar"></div></div>
+<div class="order-row"><div class="order-icon">&#127979;</div><div class="order-info"><div class="order-name">Al Baik</div><div class="order-detail">3 items - $48.78</div></div><div class="order-earn">$8.50</div></div>
+<div class="route"><div class="route-dots"><div class="rdot pickup"></div><div class="rline"></div><div class="rdot drop"></div></div><div class="route-addrs"><div>King Fahd Road, Branch 5</div><div>Downtown, Building 12</div></div></div>
+<div class="action-row"><div class="act-btn">&#128222; Call</div><div class="act-btn">&#128269; Navigate</div></div>
+<button class="main-btn">Arrived at Vendor</button>
+</div>
+</body>
+</html>

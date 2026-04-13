@@ -1,0 +1,37 @@
+name: delivra_customer
+description: Delivra - Multi-category delivery customer app
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  flutter_riverpod: ^2.4.9
+  go_router: ^13.0.1
+  dio: ^5.4.0
+  flutter_secure_storage: ^9.0.0
+  google_maps_flutter: ^2.5.3
+  geolocator: ^11.0.0
+  geocoding: ^2.1.1
+  socket_io_client: ^2.0.3+1
+  cached_network_image: ^3.3.1
+  flutter_svg: ^2.0.9
+  shimmer: ^3.0.0
+  intl: ^0.19.0
+  flutter_animate: ^4.3.0
+  lottie: ^3.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icons/
+    - assets/images/

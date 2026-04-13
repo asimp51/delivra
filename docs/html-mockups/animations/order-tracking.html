@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Delivra - Order Tracking with Animations</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; max-width: 430px; margin: 0 auto; min-height: 100vh; }
+  .header { background: white; padding: 16px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #e2e8f0; }
+  .header .back { width: 36px; height: 36px; border-radius: 10px; background: #f1f5f9; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .header h1 { font-size: 18px; font-weight: 700; color: #1e293b; }
+  .order-id { font-size: 13px; color: #059669; font-weight: 600; }
+
+  .animation-container { padding: 30px 20px; display: flex; flex-direction: column; align-items: center; }
+  .anim-svg { width: 200px; height: 200px; margin-bottom: 16px; }
+  .status-text { font-size: 20px; font-weight: 800; color: #1e293b; text-align: center; }
+  .status-sub { font-size: 14px; color: #64748b; text-align: center; margin-top: 4px; }
+
+  /* Timeline */
+  .timeline { padding: 20px; }
+  .timeline-item { display: flex; gap: 16px; padding-bottom: 24px; position: relative; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-line { position: absolute; left: 15px; top: 32px; bottom: 0; width: 2px; background: #e2e8f0; }
+  .timeline-item.completed .timeline-line { background: #059669; }
+  .timeline-item.active .timeline-line { background: linear-gradient(to bottom, #059669, #e2e8f0); }
+  .timeline-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1; }
+  .timeline-item.completed .timeline-dot { background: #059669; color: white; }
+  .timeline-item.active .timeline-dot { background: #059669; color: white; animation: pulse-dot 2s infinite; }
+  .timeline-item.pending .timeline-dot { background: #e2e8f0; color: #94a3b8; }
+  .timeline-content h4 { font-size: 14px; font-weight: 700; color: #1e293b; }
+  .timeline-item.pending .timeline-content h4 { color: #94a3b8; }
+  .timeline-content p { font-size: 12px; color: #94a3b8; margin-top: 2px; }
+  .timeline-item.completed .timeline-content p { color: #059669; }
+
+  .eta-card { margin: 20px; background: white; border-radius: 16px; padding: 16px; border: 2px solid #059669; display: flex; align-items: center; gap: 16px; }
+  .eta-time { font-size: 28px; font-weight: 800; color: #059669; }
+  .eta-label { font-size: 13px; color: #64748b; }
+
+  /* Stage buttons for demo */
+  .demo-controls { padding: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .demo-btn { padding: 8px 16px; border-radius: 8px; border: 2px solid #059669; background: white; color: #059669; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+  .demo-btn:hover, .demo-btn.active { background: #059669; color: white; }
+
+  /* Animations */
+  @keyframes pulse-dot { 0%, 100% { box-shadow: 0 0 0 0 rgba(5,150,105,0.4); } 50% { box-shadow: 0 0 0 10px rgba(5,150,105,0); } }
+  @keyframes cooking-steam { 0% { transform: translateY(0); opacity: 0.6; } 100% { transform: translateY(-20px); opacity: 0; } }
+  @keyframes cooking-bubble { 0%, 100% { r: 3; } 50% { r: 5; } }
+  @keyframes pan-shake { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-3deg); } 75% { transform: rotate(3deg); } }
+  @keyframes bike-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @keyframes wheel-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes road-move { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -30; } }
+  @keyframes check-draw { from { stroke-dashoffset: 50; } to { stroke-dashoffset: 0; } }
+  @keyframes confetti-fall { 0% { transform: translateY(-20px) rotate(0deg); opacity: 1; } 100% { transform: translateY(40px) rotate(720deg); opacity: 0; } }
+  @keyframes bag-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  @keyframes clock-tick { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  @keyframes bell-ring { 0%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(15deg); } 20%, 40% { transform: rotate(-15deg); } 50% { transform: rotate(0); } }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div><h1>Order Tracking</h1><div class="order-id">DLV-A8F2C</div></div>
+  </div>
+
+  <div class="demo-controls">
+    <button class="demo-btn active" onclick="setStage('confirmed')">Confirmed</button>
+    <button class="demo-btn" onclick="setStage('preparing')">Cooking</button>
+    <button class="demo-btn" onclick="setStage('ready')">Ready</button>
+    <button class="demo-btn" onclick="setStage('picked_up')">Picked Up</button>
+    <button class="demo-btn" onclick="setStage('in_transit')">On the Way</button>
+    <button class="demo-btn" onclick="setStage('delivered')">Delivered</button>
+  </div>
+
+  <div class="animation-container">
+    <div class="anim-svg" id="animation-area"></div>
+    <div class="status-text" id="status-text">Order Confirmed</div>
+    <div class="status-sub" id="status-sub">Your order has been confirmed by the restaurant</div>
+  </div>
+
+  <div class="eta-card">
+    <div class="eta-time" id="eta-time">25 min</div>
+    <div><div class="eta-label">Estimated delivery time</div></div>
+  </div>
+
+  <div class="timeline" id="timeline"></div>
+
+<script>
+const stages = {
+  confirmed: {
+    text: 'Order Confirmed',
+    sub: 'Restaurant is getting your order ready',
+    eta: '30 min',
+    svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="60" fill="#ecfdf5" stroke="#059669" stroke-width="3"/>
+      <g style="animation: bag-bounce 1.5s ease-in-out infinite">
+        <rect x="75" y="80" width="50" height="45" rx="5" fill="#059669"/>
+        <path d="M85 80 V70 a15 15 0 0 1 30 0 V80" fill="none" stroke="#059669" stroke-width="3"/>
+        <path d="M88 95 L96 105 L115 88" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <g style="animation: clock-tick 4s linear infinite; transform-origin: 155px 55px">
+        <circle cx="155" cy="55" r="18" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+        <line x1="155" y1="55" x2="155" y2="44" stroke="#059669" stroke-width="2" stroke-linecap="round"/>
+        <line x1="155" y1="55" x2="163" y2="55" stroke="#059669" stroke-width="2" stroke-linecap="round"/>
+      </g>
+    </svg>`,
+    timeline: [1, 0, 0, 0, 0]
+  },
+  preparing: {
+    text: 'Preparing Your Order',
+    sub: 'The chef is cooking your delicious meal',
+    eta: '25 min',
+    svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <g style="animation: pan-shake 0.8s ease-in-out infinite">
+        <ellipse cx="100" cy="130" rx="55" ry="12" fill="#059669"/>
+        <ellipse cx="100" cy="120" rx="50" ry="30" fill="#10b981"/>
+        <ellipse cx="100" cy="115" rx="45" ry="25" fill="#fbbf24"/>
+        <rect x="145" y="118" width="35" height="8" rx="4" fill="#059669"/>
+      </g>
+      <!-- Steam -->
+      <g opacity="0.5">
+        <path d="M80 90 Q85 75 80 60" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" style="animation: cooking-steam 2s ease-out infinite"/>
+        <path d="M100 85 Q105 70 100 55" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" style="animation: cooking-steam 2s ease-out 0.5s infinite"/>
+        <path d="M120 88 Q125 73 120 58" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" style="animation: cooking-steam 2s ease-out 1s infinite"/>
+      </g>
+      <!-- Bubbles -->
+      <circle cx="85" cy="112" fill="#fff" style="animation: cooking-bubble 1s ease infinite"><animate attributeName="r" values="2;4;2" dur="1s" repeatCount="indefinite"/></circle>
+      <circle cx="110" cy="108" fill="#fff" style="animation: cooking-bubble 1.2s ease infinite 0.3s"><animate attributeName="r" values="2;4;2" dur="1.2s" repeatCount="indefinite"/></circle>
+      <circle cx="95" cy="105" fill="#fff" style="animation: cooking-bubble 0.8s ease infinite 0.6s"><animate attributeName="r" values="2;5;2" dur="0.8s" repeatCount="indefinite"/></circle>
+      <!-- Fire -->
+      <g>
+        <ellipse cx="80" cy="150" rx="6" ry="10" fill="#f97316"><animate attributeName="ry" values="10;14;10" dur="0.4s" repeatCount="indefinite"/></ellipse>
+        <ellipse cx="100" cy="148" rx="7" ry="14" fill="#ef4444"><animate attributeName="ry" values="14;18;14" dur="0.5s" repeatCount="indefinite"/></ellipse>
+        <ellipse cx="120" cy="150" rx="6" ry="10" fill="#f97316"><animate attributeName="ry" values="10;14;10" dur="0.4s" repeatCount="indefinite" begin="0.2s"/></ellipse>
+      </g>
+    </svg>`,
+    timeline: [2, 1, 0, 0, 0]
+  },
+  ready: {
+    text: 'Order is Ready!',
+    sub: 'Waiting for a rider to pick up your order',
+    eta: '20 min',
+    svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="60" fill="#ecfdf5" stroke="#059669" stroke-width="3"/>
+      <g style="animation: bell-ring 2s ease infinite">
+        <path d="M100 60 L100 65" stroke="#059669" stroke-width="3" stroke-linecap="round"/>
+        <path d="M80 110 Q80 75 100 70 Q120 75 120 110 Z" fill="#059669"/>
+        <rect x="75" y="108" width="50" height="6" rx="3" fill="#059669"/>
+        <circle cx="100" cy="122" r="5" fill="#059669"/>
+      </g>
+      <g style="animation: bag-bounce 2s ease infinite">
+        <text x="100" y="170" text-anchor="middle" font-size="14" fill="#059669" font-weight="700">READY</text>
+      </g>
+    </svg>`,
+    timeline: [2, 2, 1, 0, 0]
+  },
+  picked_up: {
+    text: 'Rider Picked Up',
+    sub: 'Your order is with the delivery rider',
+    eta: '15 min',
+    svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <g style="animation: bike-bounce 1s ease-in-out infinite">
+        <!-- Rider -->
+        <circle cx="95" cy="85" r="12" fill="#059669"/>
+        <rect x="88" y="97" width="14" height="25" rx="4" fill="#059669"/>
+        <!-- Bag on back -->
+        <rect x="102" y="90" width="18" height="20" rx="3" fill="#10b981"/>
+        <text x="111" y="104" text-anchor="middle" fill="white" font-size="10" font-weight="700">D</text>
+      </g>
+      <!-- Bike -->
+      <g>
+        <circle cx="70" cy="145" r="18" fill="none" stroke="#059669" stroke-width="3">
+          <animateTransform attributeName="transform" type="rotate" from="0 70 145" to="360 70 145" dur="1s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="130" cy="145" r="18" fill="none" stroke="#059669" stroke-width="3">
+          <animateTransform attributeName="transform" type="rotate" from="0 130 145" to="360 130 145" dur="1s" repeatCount="indefinite"/>
+        </circle>
+        <line x1="70" y1="145" x2="100" y2="125" stroke="#059669" stroke-width="3"/>
+        <line x1="130" y1="145" x2="100" y2="125" stroke="#059669" stroke-width="3"/>
+      </g>
+      <!-- Road -->
+      <line x1="20" y1="170" x2="180" y2="170" stroke="#e2e8f0" stroke-width="3" stroke-dasharray="10 5" style="animation: road-move 1s linear infinite"/>
+    </svg>`,
+    timeline: [2, 2, 2, 1, 0]
+  },
+  in_transit: {
+    text: 'On the Way!',
+    sub: 'Rider is heading to your location',
+    eta: '8 min',
+    svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- Map background -->
+      <rect x="20" y="30" width="160" height="140" rx="12" fill="#ecfdf5" stroke="#d1fae5" stroke-width="2"/>
+      <line x1="20" y1="80" x2="180" y2="80" stroke="#d1fae5" stroke-width="1"/>
+      <line x1="20" y1="120" x2="180" y2="120" stroke="#d1fae5" stroke-width="1"/>
+      <line x1="80" y1="30" x2="80" y2="170" stroke="#d1fae5" stroke-width="1"/>
+      <line x1="130" y1="30" x2="130" y2="170" stroke="#d1fae5" stroke-width="1"/>
+      <!-- Route line -->
+      <path d="M50 50 Q80 50 100 80 Q120 110 150 140" fill="none" stroke="#059669" stroke-width="3" stroke-dasharray="8 4" stroke-linecap="round"/>
+      <!-- Destination pin -->
+      <g transform="translate(150,130)">
+        <path d="M0 -20 a10 10 0 1 1 0 15 L0 0z" fill="#ef4444"/>
+        <circle cx="0" cy="-14" r="4" fill="white"/>
+      </g>
+      <!-- Moving rider dot -->
+      <circle r="8" fill="#059669">
+        <animateMotion dur="4s" repeatCount="indefinite" path="M50 50 Q80 50 100 80 Q120 110 150 140"/>
+      </circle>
+      <circle r="16" fill="#059669" opacity="0.2">
+        <animateMotion dur="4s" repeatCount="indefinite" path="M50 50 Q80 50 100 80 Q120 110 150 140"/>
+        <animate attributeName="r" values="12;20;12" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <!-- ETA badge -->
+      <rect x="55" y="155" width="90" height="30" rx="15" fill="#059669"/>
+      <text x="100" y="175" text-anchor="middle" fill="white" font-size="13" font-weight="700">8 min away</text>
+    </svg>`,
+    timeline: [2, 2, 2, 2, 1]
+  },
+  delivered: {
+    text: 'Delivered!',
+    sub: 'Enjoy your order! Rate your experience',
+    eta: 'Done',
+    svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="60" fill="#ecfdf5" stroke="#059669" stroke-width="4"/>
+      <path d="M70 100 L90 120 L130 80" fill="none" stroke="#059669" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="70" style="animation: check-draw 0.8s ease forwards"/>
+      <!-- Confetti -->
+      <rect x="40" y="40" width="6" height="6" rx="1" fill="#f59e0b" style="animation: confetti-fall 2s ease infinite"/>
+      <rect x="80" y="30" width="5" height="5" rx="1" fill="#ef4444" style="animation: confetti-fall 2.3s ease 0.3s infinite"/>
+      <rect x="120" y="35" width="6" height="6" rx="1" fill="#8b5cf6" style="animation: confetti-fall 1.8s ease 0.6s infinite"/>
+      <rect x="150" y="40" width="5" height="5" rx="1" fill="#059669" style="animation: confetti-fall 2.1s ease 0.9s infinite"/>
+      <circle cx="60" cy="35" r="3" fill="#ec4899" style="animation: confetti-fall 2.5s ease 0.4s infinite"/>
+      <circle cx="140" cy="30" r="3" fill="#3b82f6" style="animation: confetti-fall 1.9s ease 0.7s infinite"/>
+      <!-- Stars for rating -->
+      <g transform="translate(50, 175)">
+        <text x="0" y="0" font-size="24">&#9733;&#9733;&#9733;&#9733;&#9733;</text>
+      </g>
+    </svg>`,
+    timeline: [2, 2, 2, 2, 2]
+  }
+};
+
+const timelineSteps = [
+  { label: 'Order Confirmed', desc: 'Restaurant accepted your order' },
+  { label: 'Preparing', desc: 'Chef is cooking your food' },
+  { label: 'Ready for Pickup', desc: 'Waiting for rider' },
+  { label: 'On the Way', desc: 'Rider heading to you' },
+  { label: 'Delivered', desc: 'Order complete' },
+];
+
+function setStage(stage) {
+  const s = stages[stage];
+  document.getElementById('animation-area').innerHTML = s.svg;
+  document.getElementById('status-text').textContent = s.text;
+  document.getElementById('status-sub').textContent = s.sub;
+  document.getElementById('eta-time').textContent = s.eta;
+
+  // Update buttons
+  document.querySelectorAll('.demo-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+
+  // Update timeline
+  const tl = document.getElementById('timeline');
+  tl.innerHTML = '';
+  timelineSteps.forEach((step, i) => {
+    const state = s.timeline[i] === 2 ? 'completed' : s.timeline[i] === 1 ? 'active' : 'pending';
+    const icon = state === 'completed' ? '&#10003;' : state === 'active' ? '&#9679;' : (i + 1);
+    tl.innerHTML += `
+      <div class="timeline-item ${state}">
+        ${i < 4 ? '<div class="timeline-line"></div>' : ''}
+        <div class="timeline-dot"><span style="font-size:14px">${icon}</span></div>
+        <div class="timeline-content">
+          <h4>${step.label}</h4>
+          <p>${state === 'completed' ? 'Completed' : state === 'active' ? 'In progress...' : step.desc}</p>
+        </div>
+      </div>`;
+  });
+}
+
+// Initialize
+setStage('confirmed');
+</script>
+</body>
+</html>
